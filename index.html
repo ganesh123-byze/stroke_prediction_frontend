@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stroke AI Clinical Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Stroke AI</h2>
+    <p>ML Clinical System</p>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <div class="top-bar">
+      <h1>Patient Risk Assessment</h1>
+    </div>
+
+    <!-- Top Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <label>Age</label>
+        <input type="number" id="age">
+      </div>
+
+      <div class="stat-card">
+        <label>Glucose Level</label>
+        <input type="number" id="avg_glucose_level">
+      </div>
+
+      <div class="stat-card">
+        <label>BMI</label>
+        <input type="number" id="bmi">
+      </div>
+
+      <div class="stat-card">
+        <label>Hypertension</label>
+        <select id="hypertension">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Dashboard Row -->
+    <div class="dashboard-row">
+
+      <!-- Risk Gauge -->
+      <div class="gauge-card">
+        <div class="circle">
+          <span id="riskPercent">0%</span>
+        </div>
+        <h3 id="riskLabel">Risk Level</h3>
+        <p id="probabilityText">Probability: 0%</p>
+        <button id="predictBtn">Analyze Risk</button>
+      </div>
+
+      <!-- Extra Inputs -->
+      <div class="extra-card">
+
+        <div class="input-group">
+          <label>Gender</label>
+          <select id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Heart Disease</label>
+          <select id="heart_disease">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Marital Status</label>
+          <select id="ever_married">
+            <option value="Yes">Married</option>
+            <option value="No">Not Married</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Residence</label>
+          <select id="Residence_type">
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Work Type</label>
+          <select id="work_type">
+            <option value="Private">Private</option>
+            <option value="Self-employed">Self-employed</option>
+            <option value="Govt_job">Government</option>
+            <option value="children">Children</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Smoking Status</label>
+          <select id="smoking_status">
+            <option value="never smoked">Never</option>
+            <option value="formerly smoked">Former</option>
+            <option value="smokes">Smoker</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
