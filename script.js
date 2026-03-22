@@ -1,4 +1,40 @@
 // ══════════════════════════════════════════════
+//  Backend Health Check
+// ══════════════════════════════════════════════
+const API_URL = 'https://stroke-prediction-4nkn.onrender.com';
+
+async function checkServerHealth() {
+  const dot  = document.getElementById('serverDot');
+  const text = document.getElementById('serverStatusText');
+
+  dot.className  = 'status-dot checking';
+  text.innerText = 'Checking…';
+
+  try {
+    const start = Date.now();
+    const res = await fetch(API_URL + '/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gender:'Male', age:50, hypertension:0, heart_disease:0, ever_married:'Yes', work_type:'Private', Residence_type:'Urban', avg_glucose_level:100, bmi:25, smoking_status:'never smoked' }),
+      signal: AbortSignal.timeout(8000),
+    });
+    const ms = Date.now() - start;
+    if (res.ok) {
+      dot.className  = 'status-dot active';
+      text.innerText = `Active · ${ms}ms`;
+    } else {
+      throw new Error('bad status');
+    }
+  } catch {
+    dot.className  = 'status-dot inactive';
+    text.innerText = 'Server Offline';
+  }
+}
+
+checkServerHealth();
+setInterval(checkServerHealth, 60000);
+
+// ══════════════════════════════════════════════
 //  SPA Router
 // ══════════════════════════════════════════════
 const navLinks = document.querySelectorAll('.nav-link');
@@ -100,7 +136,7 @@ document.getElementById('predictBtn').addEventListener('click', async function (
       smoking_status:    document.getElementById('smoking_status').value,
     };
 
-    const res = await fetch('https://stroke-prediction-4nkn.onrender.com/predict', {
+    const res = await fetch(API_URL + '/predict', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
     });
     if (!res.ok) throw new Error('API error ' + res.status);
